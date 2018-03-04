@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+
+  face:
+    container_name: face
+    build:
+      context: ./services/face
+      dockerfile: Dockerfile-dev
+    volumes:
+      - './services/face:/usr/src/app'
+    ports:
+      - 5001:5000
+    environment:
+      - APP_SETTINGS=project.config.DevelopmentConfig
+      - FLASK_DEBUG=1
+      - FLASK_APP=project/__init__.py
