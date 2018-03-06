@@ -32,9 +32,10 @@ class TestCamera(BaseTestCase):
 
         camera = Camera() # from video source
         image = camera.take_picture()
-        
+
         self.assertIsNotNone(image)
         self.assertEqual(image.shape, (480, 640, 3)) # dimensions of my webcam images
+        self.assertEqual(image.dtype, np.uint8)
 
     def test_save_picture(self):
         '''Test if we can save a picture to file.'''
