@@ -2,13 +2,11 @@
 import os
 import unittest
 import numpy as np
-import cv2
 
 from project.tests.base import BaseTestCase
 from project.api.face import load_model, populate_db, who_is_it
 
 class TestFace(BaseTestCase):
-
     def test_load_db(self):
         '''test if we can populate the database with an image.'''
 

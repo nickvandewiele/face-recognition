@@ -14,6 +14,8 @@ def create_app(script_info=None):
 
 
     # register blueprints
+    from project.api.video import video_blueprint
+    app.register_blueprint(video_blueprint)
 
     # shell context for flask cli
     app.shell_context_processor({'app': app})
