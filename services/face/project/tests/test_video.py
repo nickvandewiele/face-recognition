@@ -24,3 +24,9 @@ class TestVideoService(BaseTestCase):
 		self.assertTrue(isinstance(response, Response))
 		self.assertEqual(response.status_code, 200)
 		self.assertEqual(response.mimetype, 'multipart/x-mixed-replace')
+
+	def test_main(self):
+		response = self.client.get('/')
+
+		self.assertEqual(response.status_code, 200)
+		self.assertIn(b'<h1>Take a picture</h1>', response.data)

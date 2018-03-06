@@ -21,3 +21,9 @@ def gen(camera):
 def video_feed():
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@video_blueprint.route('/')    
+def main():
+    return render_template('index.html')
+
+    
