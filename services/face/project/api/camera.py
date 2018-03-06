@@ -43,3 +43,10 @@ def save_picture(img, path=None):
 
     fn = path or 'face.jpg'
     cv2.imwrite(fn, img)
+
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        
