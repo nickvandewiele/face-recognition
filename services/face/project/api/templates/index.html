@@ -29,14 +29,18 @@
 				</form>
 				<br>
 				<hr>
+				<h1>Detected face:</h1>
+				{% if face %}
+				<li>{{face}}</li>
+				
+				{% else %}
+				<p>No faces!</p>
+				{% endif %}
+
 			</div>
 		</div>
 	</div>
 </div>
-
-
-<img src="{{ url_for('video.video_feed') }}">
-
 
 <!-- scripts -->
 <script

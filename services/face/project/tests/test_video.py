@@ -26,7 +26,10 @@ class TestVideoService(BaseTestCase):
 		self.assertEqual(response.mimetype, 'multipart/x-mixed-replace')
 
 	def test_main(self):
+		'''test that get works for the main route.'''
 		response = self.client.get('/')
 
 		self.assertEqual(response.status_code, 200)
 		self.assertIn(b'<h1>Take a picture</h1>', response.data)
+		self.assertIn(b'<h1>Detected face:</h1>', response.data)
+		self.assertIn(b'<p>No faces!</p>', response.data)
