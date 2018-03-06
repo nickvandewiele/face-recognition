@@ -10,7 +10,7 @@ class TestCamera(BaseTestCase):
 
     def test_create_camera_path(self):
         '''Test if Camera can be instantiated from a video file.'''
-        camera = Camera(path='flame.mp4')
+        camera = Camera(path='test.mp4')
         self.assertIsNotNone(camera.video)
 
     def test_create_camera_path_none(self):
