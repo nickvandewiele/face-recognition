@@ -69,3 +69,9 @@ class TestVideoService(BaseTestCase):
         self.assertIsNotNone(image)
         self.assertEqual(image.shape, (480, 640, 3)) # dimensions of my webcam images
         self.assertEqual(image.dtype, np.uint8)
+
+
+
+if __name__ == '__main__':
+    unittest.main()
+    

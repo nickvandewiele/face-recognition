@@ -196,3 +196,11 @@ def img_to_encoding(image_path, model):
     x_train = np.array([img])
     embedding = model.predict_on_batch(x_train)
     return embedding
+
+def img_to_encoding2(image, model):
+    img1 = image
+    img = img1[...,::-1]
+    img = np.around(np.transpose(img, (2,0,1))/255.0, decimals=12)
+    x_train = np.array([img])
+    embedding = model.predict_on_batch(x_train)
+    return embedding
