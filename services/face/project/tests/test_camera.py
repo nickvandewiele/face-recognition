@@ -12,7 +12,8 @@ class TestCamera(BaseTestCase):
 
     def test_create_camera_path(self):
         '''Test if Camera can be instantiated from a video file.'''
-        camera = Camera(path='test.mp4')
+        fn = os.path.join('project', 'tests', 'test.mp4')
+        camera = Camera(path=fn)
         self.assertIsNotNone(camera.video)
 
     def test_create_camera_path_none(self):
@@ -51,6 +52,15 @@ class TestCamera(BaseTestCase):
         self.assertTrue(os.path.isfile(fn))
 
         os.remove(fn)
+
+    def test_read_video(self):
+        '''test if video can be succesfully read.'''
+        
+        fn = os.path.join('project', 'tests', 'test.mp4')
+        camera = Camera(path=fn) # from video
+        img = camera.read_video()
+
+        self.assertIsNotNone(img)
 
 
 if __name__ == '__main__':

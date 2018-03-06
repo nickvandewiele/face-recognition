@@ -1,27 +1,26 @@
+import os
 import cv2
 
 class Camera(object):
     def __init__(self, path=None):
-        # Using OpenCV to capture from device 0. If you have trouble capturing
-        # from a webcam, comment the line below out and use a video file
-        # instead.
+    
+        if path is not None:
+            assert(os.path.isfile(path))
 
-        self.video = cv2.VideoCapture(0) if path is None else cv2.VideoCapture(path)
-        # If you decide to use video.mp4, you must have this file in the folder
-        # as the main.py.
-        # self.video = cv2.VideoCapture('video.mp4')
+        inp = path or 0
+        self.video = cv2.VideoCapture(inp)
     
     def __del__(self):
-        self.video.release()
+        
+        if self.video is not None:
+            self.video.release()
     
     def get_frame(self):
-        success, image = self.video.read()
+        image = self.read_video()
 
         # We are using Motion JPEG, but OpenCV defaults to capture raw images,
         # so we must encode it into JPEG in order to correctly display the
         # video stream.
-        
-        if not success: raise Exception('Failure reading video...')
 
         ret, jpeg = cv2.imencode('.jpg', image)
         return jpeg.tobytes()
@@ -29,11 +28,15 @@ class Camera(object):
     def take_picture(self):
         '''Use video to take a picture.'''
 
+        image = self.read_video()
+        return image
+
+    def read_video(self):
+        
         success, image = self.video.read()
         if not success: raise Exception('Failure reading video...')
 
-        return image
-
+        return image        
 
 def save_picture(img, path=None):
     '''save jpg to file.'''
