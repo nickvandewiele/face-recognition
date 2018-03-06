@@ -25,3 +25,18 @@ class Camera(object):
 
         ret, jpeg = cv2.imencode('.jpg', image)
         return jpeg.tobytes()
+
+    def take_picture(self):
+        '''Use video to take a picture.'''
+
+        success, image = self.video.read()
+        if not success: raise Exception('Failure reading video...')
+
+        return image
+
+
+def save_picture(img, path=None):
+    '''save jpg to file.'''
+
+    fn = path or 'face.jpg'
+    cv2.imwrite(fn, img)
