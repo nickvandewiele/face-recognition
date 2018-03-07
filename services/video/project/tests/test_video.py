@@ -3,6 +3,8 @@ import os
 import unittest
 import json
 import numpy as np
+import requests
+import cv2
 
 from project.tests.base import BaseTestCase
 from flask import Response
@@ -70,6 +72,34 @@ class TestVideoService(BaseTestCase):
         self.assertEqual(image.shape, (480, 640, 3)) # dimensions of my webcam images
         self.assertEqual(image.dtype, np.uint8)
 
+    def test_call_face_ping(self):
+        '''test if video container can ping face container'''
+
+        url = 'http://face:5000/ping'
+        response = requests.get(url)
+
+        data = response.json()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('pong!', data['message'])
+        self.assertIn('face', data['status'])
+
+    def test_call_face_main(self):
+        '''test if video container can post an image on the main route of face container'''
+
+        fn = os.path.join('project', 'tests', 'nick_96.JPG')
+        image = cv2.imread(fn, 1)
+
+        url = 'http://face:5000/'
+        payload = {'image': image.tolist()}
+
+        response = requests.post(url, json=payload)
+
+        data = response.json()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('success', data['status'])
+        self.assertIn('nick', data['name'])
 
 
 if __name__ == '__main__':

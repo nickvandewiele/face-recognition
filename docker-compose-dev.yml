@@ -14,9 +14,13 @@ services:
     environment:
       - APP_SETTINGS=project.config.DevelopmentConfig
       - FLASK_DEBUG=1
-
     devices: 
       - /dev/video0:/dev/video0
+
+    depends_on:
+      - face
+    links:
+      - face
 
   face:
     container_name: face

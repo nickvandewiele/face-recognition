@@ -15,6 +15,7 @@ def load_model():
 def populate_db(FRmodel):
     database = {}
     fn = os.path.join('project', 'api', 'images', 'nick_96.JPG')
+    assert(os.path.isfile(fn))
     database["nick"] = img_to_encoding(fn, FRmodel)
 
     return database

@@ -7,12 +7,10 @@ from flask import Blueprint, jsonify, request, render_template, Response, redire
 
 face_blueprint = Blueprint('face', __name__, template_folder='./templates')
 
-FRmodel = load_model()
-
 @face_blueprint.route('/ping', methods=['GET'])
 def ping_pong():
     return jsonify({
-        'status': 'success',
+        'status': 'success from face!',
         'message': 'pong!'
     })
 
@@ -34,6 +32,7 @@ def main():
     image = post_data.get('image')
     image = np.array(image, dtype=np.uint8)
 
+    FRmodel = load_model()
     database = populate_db(FRmodel = FRmodel)
     min_dist, identity = recognize(image, database, FRmodel)
 

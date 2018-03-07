@@ -9,7 +9,7 @@ from project.api.camera import Camera, gen
 @video_blueprint.route('/ping', methods=['GET'])
 def ping_pong():
     return jsonify({
-        'status': 'success',
+        'status': 'success from video!',
         'message': 'pong!'
     })
 
