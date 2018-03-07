@@ -61,7 +61,7 @@ class TestVideoService(BaseTestCase):
         self.assertIn('image was taken!', data['message'])
         
         self.assertIsNotNone(image)
-        self.assertEqual(image.shape, (480, 640, 3)) # dimensions of my webcam images
+        self.assertEqual(image.shape, (96, 96, 3))
         self.assertEqual(image.dtype, np.uint8)
 
 if __name__ == '__main__':

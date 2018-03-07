@@ -65,11 +65,11 @@ def take_pic():
     response_object = {
         'status': 'fail',
         'message': 'Invalid payload.',
-        'image': np.zeros((480, 640, 3), dtype=np.uint8).tolist(),
+        'image': np.zeros((96, 96, 3), dtype=np.uint8).tolist(),
     }
 
     try:
-        image = Camera().take_picture()
+        image = Camera().take_picture_and_resize()
 
         response_object = {
                     'status': 'success',

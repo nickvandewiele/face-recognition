@@ -36,7 +36,13 @@ class Camera(object):
         success, image = self.video.read()
         if not success: raise Exception('Failure reading video...')
 
-        return image        
+        return image
+
+    def take_picture_and_resize(self, shape=(96, 96)):
+
+        image = self.take_picture()
+        return cv2.resize(image, shape)
+        
 
 def save_picture(img, path=None):
     '''save jpg to file.'''

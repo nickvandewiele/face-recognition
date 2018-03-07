@@ -63,6 +63,27 @@ class TestCamera(BaseTestCase):
 
         self.assertIsNotNone(img)
 
+    def test_resize(self):
+        '''test if image resizing works as expected.'''
+
+        fn = os.path.join('project', 'tests', 'nick_large.JPG')
+        image = cv2.imread(fn, 1)
+
+        img_resized = cv2.resize(image, (96, 96))
+        img_np = np.array(img_resized, dtype=np.uint8)
+        self.assertEqual(img_np.shape, (96, 96, 3))
+
+    def test_take_picture_and_resize(self):
+        '''test if we can take a picture and resize it to specific size.'''
+
+        camera = Camera() # from video source
+        shape = (96, 96)
+        image = camera.take_picture_and_resize(shape=shape)
+
+        self.assertIsNotNone(image)
+        self.assertEqual(image.shape, (96, 96, 3))
+        self.assertEqual(image.dtype, np.uint8)
+
 
 if __name__ == '__main__':
     unittest.main()
