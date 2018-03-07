@@ -1,16 +1,8 @@
 import os
 import numpy as np
+import tensorflow as tf
 
-from .fr_utils import load_weights_from_FaceNet, img_to_encoding, img_to_encoding2
-from .inception_blocks_v2 import faceRecoModel
-
-def load_model():
-    FRmodel = faceRecoModel(input_shape=(3, 96, 96))
-    print("Total Params:", FRmodel.count_params())
-
-    load_weights_from_FaceNet(FRmodel)
-
-    return FRmodel
+from .util import img_to_encoding, img_to_encoding2
 
 def populate_db(FRmodel):
     database = {}

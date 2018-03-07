@@ -6,7 +6,9 @@ import numpy as np
 import cv2
 
 from project.tests.base import BaseTestCase
-from project.api.recognize import load_model, populate_db, who_is_it
+from project.api.recognize import populate_db, who_is_it
+from project.api.util import load_model
+
 
 class TestFace(BaseTestCase):
 

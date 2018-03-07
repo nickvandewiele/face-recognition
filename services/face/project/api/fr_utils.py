@@ -189,19 +189,3 @@ def load_dataset():
     test_set_y_orig = test_set_y_orig.reshape((1, test_set_y_orig.shape[0]))
     
     return train_set_x_orig, train_set_y_orig, test_set_x_orig, test_set_y_orig, classes
-
-def img_to_encoding(image_path, model):
-    img1 = cv2.imread(image_path, 1)
-    img = img1[...,::-1]
-    img = np.around(np.transpose(img, (2,0,1))/255.0, decimals=12)
-    x_train = np.array([img])
-    embedding = model.predict_on_batch(x_train)
-    return embedding
-
-def img_to_encoding2(image, model):
-    img1 = image
-    img = img1[...,::-1]
-    img = np.around(np.transpose(img, (2,0,1))/255.0, decimals=12)
-    x_train = np.array([img])
-    embedding = model.predict_on_batch(x_train)
-    return embedding
