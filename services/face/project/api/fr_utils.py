@@ -11,6 +11,7 @@ from keras.layers.normalization import BatchNormalization
 from keras.layers.pooling import MaxPooling2D, AveragePooling2D
 import h5py
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 _FLOATX = 'float32'
 
