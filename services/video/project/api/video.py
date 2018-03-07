@@ -5,7 +5,9 @@ import cv2
 
 from flask import Blueprint, jsonify, request, render_template, Response, redirect, url_for
 
-video_blueprint = Blueprint('video', __name__, template_folder='./templates')
+video_blueprint = Blueprint('video', __name__, 
+    template_folder='./templates',
+    static_folder='./static')
 
 from project.api.camera import Camera, gen
 from project.api.util import call_face
